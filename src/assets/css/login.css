@@ -1,0 +1,58 @@
+.uchart-login{
+    min-height: 100%;
+    width: 100%;
+    overflow: hidden;
+    /* background: -moz-linear-gradient(-185deg, #4facfe, #00f2fe);
+	background: -webkit-linear-gradient(-185deg, #4facfe, #00f2fe);
+	background: -webkit-gradient(linear,-185deg,from(#4facfe),to(#00f2fe));
+	background: -webkit-linear-gradient(-185deg, #4facfe, #00f2fe);
+	background: -o-linear-gradient(-185deg, #4facfe, #00f2fe);
+	background: linear-gradient(-185deg, #4facfe, #00f2fe);
+    background-color: #4facfe; */
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+.uchart-login::before{
+    position: absolute;
+    width: 14%;
+    right: 30.5%;
+    height: 140%;
+    content: "";
+    transform: rotate(30deg);
+    background: -moz-linear-gradient(-185deg, #4facfe, #00f2fe);
+	background: -webkit-linear-gradient(-185deg, #4facfe, #00f2fe);
+	background: -webkit-gradient(linear,-185deg,from(#4facfe),to(#00f2fe));
+	background: -webkit-linear-gradient(-185deg, #4facfe, #00f2fe);
+	background: -o-linear-gradient(-185deg, #4facfe, #00f2fe);
+	background: linear-gradient(-185deg, #4facfe, #00f2fe);
+    background-color: #4facfe;
+    z-index: 2;
+}
+.uchart-login::after{
+    position: absolute;
+    right: 14%;
+    width: 14%;
+    height: 140%;
+    content: "";
+    transform: rotate(30deg);
+    /* background: -moz-linear-gradient(-185deg, #ffffff 100%,rgba(255,255,255,0) 0%);
+	background: -webkit-linear-gradient(-185deg, #ffffff 100%,rgba(255,255,255,0) 0%);
+	background: -webkit-linear-gradient(-185deg, #ffffff 100%, rgba(255,255,255,0) 0%);
+	background: -o-linear-gradient(-185deg, #ffffff 100%, rgba(255,255,255,0) 0%); */
+	background: linear-gradient(-185deg, rgba(255,255,255,1), rgba(255,255,255,0));
+    /* background-color: #ffffff; */
+    z-index: 2;
+}
+.uchat-content{
+    min-width: 900px;
+    height: 450px;
+    background: white;
+    border-radius: 5px;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0px  0px 10px rgba(55, 156, 245, 0.3),0px  10px 20px rgba(40, 142, 232, 0.1)
+}

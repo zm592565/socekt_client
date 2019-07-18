@@ -12,7 +12,7 @@ module.exports = {
             entry: 'src/modules/index/main.js',
             template: 'public/index.html',
             filename: 'index.html',
-            title: '物料申购',
+            title: '悠聊-Uchat',
         }
     },
     lintOnSave: false,

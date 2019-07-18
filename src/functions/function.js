@@ -18,8 +18,6 @@ import qs from 'qs';
 import Api from '../api/api'
 
 
-
-
 const functions={
 
 
@@ -177,7 +175,9 @@ const functions={
 			
     return year+'-'+month+'-'+day+' '+hour+':'+minte+':'+seconds;
 	
-	},
+  },
+  
+
 
   //获取完整网址
   getAllUrl(pathname=''){
