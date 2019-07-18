@@ -1,14 +1,14 @@
 .uchart-login{
     min-height: 100%;
     width: 100%;
-    overflow: hidden;
-    /* background: -moz-linear-gradient(-185deg, #4facfe, #00f2fe);
+    overflow: auto;
+    background: -moz-linear-gradient(-185deg, #4facfe, #00f2fe);
 	background: -webkit-linear-gradient(-185deg, #4facfe, #00f2fe);
 	background: -webkit-gradient(linear,-185deg,from(#4facfe),to(#00f2fe));
 	background: -webkit-linear-gradient(-185deg, #4facfe, #00f2fe);
 	background: -o-linear-gradient(-185deg, #4facfe, #00f2fe);
 	background: linear-gradient(-185deg, #4facfe, #00f2fe);
-    background-color: #4facfe; */
+    background-color: #4facfe;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -17,42 +17,53 @@
     z-index: 1;
 }
 .uchart-login::before{
-    position: absolute;
-    width: 14%;
-    right: 30.5%;
-    height: 140%;
+    position: fixed;
+    width: 20%;
+    height: 20%;
+    left: 0px;
+    top: 0px;
     content: "";
-    transform: rotate(30deg);
-    background: -moz-linear-gradient(-185deg, #4facfe, #00f2fe);
-	background: -webkit-linear-gradient(-185deg, #4facfe, #00f2fe);
-	background: -webkit-gradient(linear,-185deg,from(#4facfe),to(#00f2fe));
-	background: -webkit-linear-gradient(-185deg, #4facfe, #00f2fe);
-	background: -o-linear-gradient(-185deg, #4facfe, #00f2fe);
-	background: linear-gradient(-185deg, #4facfe, #00f2fe);
-    background-color: #4facfe;
+    background: url('../img/login_left_top.png') no-repeat left top;
+    background-size: auto 100%;
     z-index: 2;
 }
 .uchart-login::after{
-    position: absolute;
-    right: 14%;
-    width: 14%;
-    height: 140%;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 30%;
+    height: 25%;
     content: "";
-    transform: rotate(30deg);
-    /* background: -moz-linear-gradient(-185deg, #ffffff 100%,rgba(255,255,255,0) 0%);
-	background: -webkit-linear-gradient(-185deg, #ffffff 100%,rgba(255,255,255,0) 0%);
-	background: -webkit-linear-gradient(-185deg, #ffffff 100%, rgba(255,255,255,0) 0%);
-	background: -o-linear-gradient(-185deg, #ffffff 100%, rgba(255,255,255,0) 0%); */
-	background: linear-gradient(-185deg, rgba(255,255,255,1), rgba(255,255,255,0));
-    /* background-color: #ffffff; */
+    background: url('../img/login_right_bottom.png') no-repeat right bottom;
+    background-size: auto 100%;
     z-index: 2;
 }
 .uchat-content{
     min-width: 900px;
     height: 450px;
     background: white;
-    border-radius: 5px;
     position: relative;
     z-index: 3;
-    box-shadow: 0px  0px 10px rgba(55, 156, 245, 0.3),0px  10px 20px rgba(40, 142, 232, 0.1)
+    display: flex;
+    display: -webkit-flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 0px  0px 20px rgba(55, 156, 245, 0.3),0px  10px 40px rgba(40, 142, 232, 0.3)
+}
+.uchat-content::after{
+    position: absolute;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    line-height: 72px;
+    left: 0px;
+    right: 0px;
+    bottom: -72px;
+    content: "© 2019 Uchat. All rights reserved.";
+}
+.uchat-content .swiper_box{
+    width: 350px;
+    overflow: hidden;
+    height: 100%;
 }

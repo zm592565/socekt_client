@@ -1,13 +1,26 @@
 <template>
     <div class="uchart-login">
         <div class="uchat-content">
-            <button @click="send">发射</button>
+            <Carousel v-model="value1" class='swiper_box' arrow='never' autoplay loop>
+                <CarouselItem>
+                    <div class="demo-carousel">
+                        <img src="~assets/img/login_banner.jpg" alt="">
+                    </div>
+                </CarouselItem>
+            </Carousel>
+            
+
         </div>
     </div>
 </template>
 <script>
 export default {
     name:'login',
+    data(){
+        return{
+            value1: 0
+        }
+    },
     methods: {
         send(){
             var chat = io.connect('http://127.0.0.1:3000/chat');
