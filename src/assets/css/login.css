@@ -39,7 +39,7 @@
     z-index: 2;
 }
 .uchat-content{
-    min-width: 900px;
+    min-width: 800px;
     height: 450px;
     background: white;
     position: relative;
@@ -66,4 +66,32 @@
     width: 350px;
     overflow: hidden;
     height: 100%;
+}
+.uchat-right-box{
+    flex: 1;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    height: 100%;
+}
+.uchat-right-header-tab{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #F5F5F5
+}
+.uchat-right-header-tab li{
+    line-height: 54px;
+    margin-right: 24px;
+    position: relative;
+    cursor: pointer;
+}
+.uchat-right-header-tab li.active::after{
+    position: absolute;
+    content: "";
+    left: 0px;
+    right: 0px;
+    bottom: -1px;
+    height: 2px;
+    background: #333333;
 }
