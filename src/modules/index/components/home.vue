@@ -83,7 +83,7 @@
                  </EasyScrollbar>
             </div>
             <div class="chat-converse">
-                <div class="converse-header">
+                <div class="converse-header" ref='converseheader'>
                     <p>浮生一日</p>
                     <Dropdown>
                         <a href="javascript:void(0)">
@@ -98,10 +98,14 @@
                         </DropdownMenu>
                     </Dropdown>
                 </div>
-                <div class="send-list">
-                    wewqecc
+                <div class="send-list" ref="sendlist">
+                    <EasyScrollbar :barOption="opt">
+                        <div :style="{'height':sendlistheight+'px'}">
+                            <div style="height:900px;">dsadsa</div>
+                        </div>
+                    </EasyScrollbar>
                 </div>
-                <div class="send-user-area">
+                <div class="send-user-area" ref="senduserarea">
                     <div class="send-user-tools">
                         <div id="emoji" class="emoji" @click.stop="emojiactive=!emojiactive">
                             <svg style="color: #999;fill: currentColor" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4692" xmlns:xlink="http://www.w3.org/1999/xlink"><defs></defs><path d="M520.76544 767.05792c-99.14368 0-180.30592-73.65632-193.78176-169.09312l-49.22368 0c13.78304 122.624 116.61312 218.29632 242.91328 218.29632S749.81376 720.5888 763.5968 597.9648l-49.0496 0C701.0816 693.4016 619.90912 767.05792 520.76544 767.05792zM512 0C229.23264 0 0 229.2224 0 512c0 282.75712 229.23264 512 512 512 282.76736 0 512-229.24288 512-512C1024 229.2224 794.76736 0 512 0zM511.95904 972.78976C257.46432 972.78976 51.1488 766.48448 51.1488 512c0-254.49472 206.30528-460.81024 460.81024-460.81024 254.48448 0 460.8 206.30528 460.8 460.81024C972.75904 766.48448 766.44352 972.78976 511.95904 972.78976zM655.57504 456.92928c31.06816 0 56.24832-25.1904 56.24832-56.24832 0-31.06816-25.18016-56.24832-56.24832-56.24832-31.06816 0-56.25856 25.18016-56.25856 56.24832C599.31648 431.73888 624.49664 456.92928 655.57504 456.92928zM362.73152 456.92928c31.06816 0 56.24832-25.1904 56.24832-56.24832 0-31.06816-25.1904-56.24832-56.24832-56.24832-31.0784 0-56.25856 25.18016-56.25856 56.24832C306.47296 431.73888 331.65312 456.92928 362.73152 456.92928z" p-id="4693"></path></svg>
@@ -113,7 +117,9 @@
                     <div class="commit-world-area">
                         <textarea></textarea>
                     </div>
-
+                    <div class="commit-submit">
+                        <Button shape="circle">发送(Enter)</Button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,6 +136,7 @@ export default {
             emoji,
             emojiactive:false,
             chathistoryheight:0,
+            sendlistheight:0,
             opt:{
                 barColor:"#00",   //滚动条颜色
                 barWidth:4,           //滚动条宽度
@@ -139,7 +146,7 @@ export default {
                 barOpacityMin:0.3,      //滚动条非激活状态下的透明度
                 zIndex:"auto",        //滚动条z-Index
                 autohidemode:true,     //自动隐藏模式
-                horizrailenabled:true,//是否显示水平滚动条
+                horizrailenabled:false,//是否显示水平滚动条
             }
 
         }
@@ -150,13 +157,12 @@ export default {
            _self.emojiactive=false;
            e.stopPropagation();
         },false);
-        this.$nextTick(()=>{
-            this.chathistoryheight=this.$refs.chathistory.clientHeight;
-        })
+        this.sendlistheight=this.$refs.sendlist.clientHeight;
+        this.chathistoryheight=this.$refs.chathistory.clientHeight;
         window.onresize=function(){
-            _self.$nextTick(()=>{
-                _self.chathistoryheight=_self.$refs.chathistory.clientHeight;
-            })
+            _self.chathistoryheight=_self.$refs.chathistory.clientHeight;
+            _self.sendlistheight=_self.$refs.sendlist.clientHeight;
+            console.info(_self.sendlistheight)
         }
     },
     methods:{

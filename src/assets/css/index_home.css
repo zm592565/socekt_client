@@ -130,6 +130,7 @@
 }
 .handle-content-area .chat-history ul{
     display: block;
+    width: 100%;
     overflow-x: hidden;
 }
 .handle-content-area .chat-history ul li{
@@ -175,7 +176,7 @@
 }
 .handle-content-area .chat-converse{
     flex: 0.75;
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -202,10 +203,10 @@
 .handle-content-area .chat-converse .send-list{
     flex: 1;
     width: 100%;
+    overflow: hidden;
     background: #fafafa;
 }
 .handle-content-area .chat-converse .send-user-area{
-    height: 200px;
     width: 100%;
     display: flex;
     display: -webkit-flex;
@@ -267,4 +268,11 @@
     outline: none;
     box-sizing: border-box;
     padding: 15px;
+    overflow: hidden;
+}
+.commit-submit{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: right
 }
