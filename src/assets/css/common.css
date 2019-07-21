@@ -3,7 +3,6 @@
 	width: 100%;
 	overflow:hidden;
 	position: relative;
-	background: #F5F5F5
 }
 #box_content{
 	height:100%;
@@ -89,6 +88,9 @@ p{
 }
 .mr_20{
 	margin-right: 20px
+}
+.ml_8{
+	margin-left: 8px;
 }
 
 .text_r{

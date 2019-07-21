@@ -8,21 +8,8 @@
                     </div>
                 </CarouselItem>
             </Carousel>
-            <div class="uchat-right-box">
-                <ul class="uchat-right-header-tab">
-                    <li v-for="(item,index) in headerTab" :key="index" @click="active=index" :class="{'active':active==index}">{{item}}</li>
-                </ul>
-                <Form ref="formInline" :model="formInline" :rules="ruleInline">
-                    <FormItem prop="user">
-                        <Input type="text" v-model="formTop.input1" placeholder="Username">
-                            <Icon type="ios-person-outline" slot="prepend"></Icon>
-                        </Input>
-                    </FormItem>
-                    <FormItem>
-                        <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
-                    </FormItem>
-                </Form>
-            </div>
+            
+
         </div>
     </div>
 </template>
@@ -31,14 +18,7 @@ export default {
     name:'login',
     data(){
         return{
-            value1: 0,
-            active:0,
-            headerTab:['密码登录','短信登录'],
-            formTop: {
-                    input1: '',
-                    input2: '',
-                    input3: ''
-                }
+            value1: 0
         }
     },
     methods: {

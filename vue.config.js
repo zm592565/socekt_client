@@ -29,7 +29,7 @@ module.exports = {
     },   
 
     css: {
-        extract: true,
+        extract: false,
         sourceMap: false,
         loaderOptions: {},
         modules: true
