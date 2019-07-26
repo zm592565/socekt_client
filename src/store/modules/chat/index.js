@@ -1,9 +1,10 @@
 
     const state={
-      'companyCode': 'companyCode',
-      'employeeCode': 'employeeCode',
-      isRequestSetAssign: false,
-      isDoAssign: false,
+      userinfo:{
+        id:550,
+        name:'test',
+        face:'https://i.loli.net/2017/08/21/599a521472424.jpg'
+      }
     }
 
     const mutations={

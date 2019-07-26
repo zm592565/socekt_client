@@ -3,7 +3,7 @@
     <div class="uchat-nation-row">
         <div class="user-face">
             <Badge dot>
-                <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+                <Avatar :src="face" />
             </Badge>
         </div>
         <div class="nation_middle">
@@ -100,8 +100,44 @@
                 </div>
                 <div class="send-list" ref="sendlist">
                     <EasyScrollbar :barOption="opt">
-                        <div :style="{'height':sendlistheight+'px'}">
-                            <div style="height:900px;">dsadsa</div>
+                        <div class="chew_box" :style="{'height':sendlistheight+'px'}">
+                            <div class="chew_list_box">
+                                <dl>
+                                    <dt>1</dt>
+                                    <dd>
+                                        <div class="user_chat_content">
+                                            namespace.use（fn）
+注册一个中间件，这是一个为每个传入执行的功能Socket，并且接收套接字和可选地将执行延迟到下一个注册的中间件的参数。
+传递给中间件回调的错误作为特殊error数据包发送给客户端。
+io.use((socket, next) => {
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="mine_chat">
+                                    <dt>2</dt>
+                                    <dd>
+                                        <div class="user_chat_content">
+                                            namespace.use（fn）
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="mine_chat">
+                                    <dt>2</dt>
+                                    <dd>
+                                        <div class="user_chat_content">
+                                            namespace.use（fn）
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="mine_chat">
+                                    <dt>2</dt>
+                                    <dd>
+                                        <div class="user_chat_content">
+                                            namespace.use（fn）
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
                         </div>
                     </EasyScrollbar>
                 </div>
@@ -118,7 +154,7 @@
                         <textarea></textarea>
                     </div>
                     <div class="commit-submit">
-                        <Button shape="circle">发送(Enter)</Button>
+                        <Button @click="send" shape="circle">发送(Enter)</Button>
                     </div>
                 </div>
             </div>
@@ -128,6 +164,7 @@
 </template>
 <script>
 import {emoji} from '@/api/emoji'
+const { mapState, mapActions } = Vuex.createNamespacedHelpers('Chat')
 export default {
     name:'chat',
     data(){
@@ -147,9 +184,24 @@ export default {
                 zIndex:"auto",        //滚动条z-Index
                 autohidemode:true,     //自动隐藏模式
                 horizrailenabled:false,//是否显示水平滚动条
-            }
-
+            },
+            
+            socket:null,
+            userid:null,
         }
+    },
+    created(){
+        //进行登录连接
+        const socket = io(`ws://127.0.0.1:3000/chat`);
+        var userid=Math.random()*100;
+        this.userid=userid;
+        socket.on('connect',function(){
+            socket.emit('login',{'userid':parseInt(userid),username:'zm592565'})
+        })
+        this.socket=socket;
+
+        var test={'key':'addd','ddd':'dddd','333':'fff'};
+        console.info(test.length)
     },
     mounted(){
         var _self=this;
@@ -162,11 +214,26 @@ export default {
         window.onresize=function(){
             _self.chathistoryheight=_self.$refs.chathistory.clientHeight;
             _self.sendlistheight=_self.$refs.sendlist.clientHeight;
-            console.info(_self.sendlistheight)
         }
+
+        this.socket.on('disconnect',function(){
+            alert('离线')
+        })
+    },
+    computed: {
+        ...mapState({
+            face:(state)=>{
+              return state.userinfo.face;  
+            },
+        })
     },
     methods:{
-
+        send(){
+            this.socket.emit('send',{userid:this.userid,username:'test',msg:'aaaa'})
+            this.socket.on('message',msg=>{
+                console.info(msg)
+            })
+        }
     }
 }
 </script>

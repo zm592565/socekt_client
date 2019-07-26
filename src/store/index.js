@@ -1,14 +1,12 @@
 
-import basicInfo from './modules/basicInfo'
-import user from './modules/user'
-import permission from './modules/permission'
+import Chat from './modules/chat'
+import Common from './modules/common'
 export default new Vuex.Store({
   state: {
     rootstate:'root'
   },
   modules: {
-    basicInfo,
-    user,
-    permission
+    Chat,
+    Common
   }
 })

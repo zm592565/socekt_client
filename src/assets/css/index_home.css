@@ -276,3 +276,73 @@
     padding: 10px;
     text-align: right
 }
+.chew_list_box{
+    display: block;
+    box-sizing: border-box;
+    padding: 20px;
+}
+.chew_list_box dl{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.chew_list_box dl.mine_chat{
+    justify-content: flex-end;
+}
+.chew_list_box dl.mine_chat dt{
+    order:2;
+}
+.chew_list_box dl.mine_chat dd{
+    order:1;
+    text-align: right;
+    margin-left: 0px;
+    margin-right: 20px;
+}
+.chew_list_box dl.mine_chat dd::before{
+    display: none; 
+}
+.chew_list_box dl.mine_chat dd::after{
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: -15px;
+    border-top: 10px transparent dashed;
+    border-left: 10px #6f52ed solid;
+    border-bottom: 10px transparent dashed;
+    border-right: 10px transparent dashed;
+}
+.chew_list_box dl.mine_chat dd .user_chat_content{
+    background-color: #6f52ed;
+    color: #ffffff
+}
+.chew_list_box dl dt{
+    width: 54px;
+    height: 54px;
+    background: #ffffff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.chew_list_box dl dd{
+    flex: 1;
+    margin-left: 20px;
+    position: relative;
+}
+.chew_list_box dl dd::before{
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -15px;
+    border-top: 10px transparent dashed;
+    border-left: 10px transparent dashed;
+    border-bottom: 10px transparent dashed;
+    border-right: 10px #fff solid;
+}
+.chew_list_box dl dd .user_chat_content{
+    padding: 10px;
+    border-radius: 4px;
+    background: #fff;
+    display: inline-block;
+    box-shadow: 0px 0px 10px rgba(216, 217, 224, 0.5);
+}
