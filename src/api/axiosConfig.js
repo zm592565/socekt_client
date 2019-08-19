@@ -6,6 +6,7 @@ const axiosConfig = {
   retry: 1,
   retryDelay: 4000,
   timeout: 20000,
+  withCredentials: true,
   headers: {'Content-Type': 'application/json'},
   // headers: {'Content-Type': 'application/x-www-form-urlencoded','Accept':'application/json,text/javascript,*/*;q=0.01'},
 };

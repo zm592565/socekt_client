@@ -25,17 +25,17 @@
                             <FormItem prop="checkcode">
                                 <Row>
                                     <Col span="16">
-                                        <Input size="large" type="text" v-model="formInline.code" placeholder="Enter something...">
-                                            <i class="iconfont text_999 icon-jiesuo" slot="prepend"></i>
+                                        <Input size="large" type="text" v-model="formInline.checkcode" placeholder="Code">
+                                            <i class="iconfont text_999 icon-yanzhengma" slot="prepend"></i>
                                         </Input>
                                     </Col>
-                                    <Col span="6" offset="1">
-                                        <div class="checkcode_box" v-html="codehtml"></div>
+                                    <Col span="6" offset="1" v-show="codehtml">
+                                        <div @click="getcode" class="checkcode_box" v-html="codehtml"></div>
                                     </Col>
                                 </Row>
                             </FormItem>
                             <FormItem>
-                                <Button class="mb_16" long size='large' type="primary" @click="handleSubmit('formInline')">登录</Button>
+                                <Button class="mb_16" long size='large' type="primary" @click="login('formInline')">登录</Button>
                                 <Button long size='large'>重置</Button>
                             </FormItem>
                         </Form>
@@ -55,11 +55,11 @@ export default {
     data(){
         return{
             value1: 0,
+            codehtml:null,
             formInline: {
                 user: '',
                 password: '',
-                code:'',
-                codehtml:null
+                checkcode:'',
             },
             ruleInline: {
                 user: [
@@ -71,34 +71,38 @@ export default {
                 ],
                 checkcode: [
                     { required: true, message: '输入验证码', trigger: 'blur' },
-                    { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+                    { type: 'string', min: 4, message: 'The code length cannot be less than 4 bits', trigger: 'blur' }
                 ]
             }
         }
     },
     mounted(){
-        this.$store.dispatch('Common/GETCHECK_CODE')
-        .then(res=>{
-            console.info('aaa')
-        })
+        this.getcode()
     },
     methods: {
-        send(){
-            var chat = io.connect('http://127.0.0.1:3000/chat');
-            chat.on('connect',function(socket){
-                chat.emit('send','aa'); 
-                chat.on('message',data=>{
-                    console.info(data)
-                })
-                chat.on('disconnect', function(){ 
-                    alert('用户掉线1111')
-                });
+        getcode(){
+            this.$store.dispatch('Common/GETCHECK_CODE',{width:100,height:36})
+            .then(res=>{
+                this.codehtml=res;
             })
-            // chat.on('disconnect', function () {
-            //     alert('用户掉线')
-            // });
-        }
-    },
+        },
+        login(name){
+            this.$refs[name].validate((valid) => {
+                if (valid) {
+                    this.$store.dispatch('Common/TOLOGIN',{username:this.formInline.user,password:this.formInline.password,code:this.formInline.checkcode})
+                    .then(res=>{
+                        if(res){
+                            iview.Message.success('登录成功');
+                        }
+                        this.$router.push({name:'home'})
+                    })
+                } else {
+                    iview.Message.error('输入信息有误，请重新输入!');
+                }
+            })
+            
+        },
+    } 
 }
 </script>
 

@@ -1,58 +1,23 @@
-
+import Functions from '@/functions/function'
+import API from '@/api/api'
     const state={
-      userinfo:{
-        id:550,
-        name:'test',
-        face:'https://i.loli.net/2017/08/21/599a521472424.jpg'
-      }
+      followlist:[],
+      historylist:[],
     }
 
-    const mutations={
-      setCompanyCode(state, data) {
-        state.companyCode = data
-      },
-      setEmployeeCode(state, data) {
-        state.employeeCode = data
-      },
-      
-    }
+    const mutations={}
 
-    const getters = {
-        cartProducts: (state, getters, rootState) => {
-          return state.items.map(({ id, quantity }) => {
-            const product = rootState.products.all.find(product => product.id === id)
-            return {
-              title: product.title,
-              price: product.price,
-              quantity
+    const getters = {}
+
+    const actions={
+        GETFOLLOW({state,commit,getters},{userid,pagesize,page}){
+          return Functions.requestHttpMethods(API.GETFOLLOW,{userid,pagesize,page},'post')
+          .then(res=>{
+            if(res.data.state){
+              return Promise.resolve(res.data.data)
             }
           })
         },
-      
-        cartTotalPrice: (state, getters) => {
-          return getters.cartProducts.reduce((total, product) => {
-            return total + product.price * product.quantity
-          }, 0)
-        }
-      }
-
-    const actions={
-        test({state,commit},data){
-          console.info(data)
-        },
-        addProductToCart ({ state, commit }, product) {
-            commit('setCheckoutStatus', null)
-            if (product.inventory > 0) {
-              const cartItem = state.items.find(item => item.id === product.id)
-              if (!cartItem) {
-                commit('pushProductToCart', { id: product.id })
-              } else {
-                commit('incrementItemQuantity', cartItem)
-              }
-              // remove 1 item from stock
-              commit('products/decrementProductInventory', { id: product.id }, { root: true })
-            }
-          }
     }
 
     export default {

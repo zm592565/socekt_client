@@ -346,3 +346,41 @@
     display: inline-block;
     box-shadow: 0px 0px 10px rgba(216, 217, 224, 0.5);
 }
+
+
+
+/* 通讯录 */
+.addressBook{
+    display: block;
+    clear: both;
+}
+.list_title_area{
+    font-size: 12px;
+    text-align: left;
+    line-height: 44px;
+    padding-left: 10px;
+}
+.addressBook dl{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.addressBook dl:hover{
+    background: rgba(0, 0, 0, 0.1)
+}
+.addressBook dl dt{
+    width: 54px;
+    height: 54px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.addressBook dl dd{
+    flex: 1;
+}

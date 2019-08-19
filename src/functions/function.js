@@ -12,7 +12,7 @@ var MD5 = require('md5.js');
 import AxiosConfig from '../api/axiosConfig'
 import qs from 'qs';
 // import Checks from './checkformat';
-// import store from '../store/store'
+import store from '../store/index'
 // import {vantTool} from './commonTools';
 
 import Api from '../api/api'
@@ -96,6 +96,7 @@ const functions={
 
   /*axios*/
   requestHttpMethods(url,data,HttpMethod='post',isloading=false,commonParam=true,config=AxiosConfig){
+    if(isloading)iview.Message.loading({content: 'Loading...',duration: 0});
     let formatHttp=HttpMethod.toLowerCase();
     var formatDate=commonParam?Object.assign({},commonParam,data):data;
     if(formatHttp=='get'){
@@ -103,16 +104,15 @@ const functions={
     }
 
     /*拦截header头,在此处可以调用vuex里的值*/
-    // config.headers['Authorization']='Bearer '+store.state.token;
-    // config.headers['userId']=store.state.userinfo.id;
+    config.headers['Authorization']='Bearer '+store.state.token;
     var instance = axios.create(config);
     let HttpSendType=formatHttp=='post'?instance.post:instance.get;
     return HttpSendType(url,formatDate).then(res=>{
-      // if(isloading)vantTool.closeMessage();
-      return Promise.resolve(res.data)
+      if(isloading)iview.Message.destroy();
+      return Promise.resolve(res)
     })
       .catch(err=>{
-        // vantTool.sendMessage(err,3)
+        if(isloading)iview.Message.destroy();
         throw err
       })
   },
